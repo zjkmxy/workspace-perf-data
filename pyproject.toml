@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "workspace-perf-data"
+version = "0.1.0"
+description = "NDN Workspace performance test data"
+authors = ["Xinyu Ma <ma.xinyu.26a@kyoto-u.jp>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+notebook = "^7.1.2"
+ipython = "^8.23.0"
+jupyterlab = "^4.1.6"
+numpy = "^1.26.4"
+scipy = "^1.13.0"
+pandas = "^2.2.2"
+matplotlib = "^3.8.4"
+sympy = "^1.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
