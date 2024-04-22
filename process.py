@@ -29,6 +29,18 @@ def process_line(line: str, recver: int) -> str:
   return f'{sender},{seq},{new_val}'
 
 
+def filter_one_hop(line: str, recver: int) -> str:
+  match = re.match('node-([0-9]+)-[0-9]+,([0-9]+),([0-9]+)', line)
+  if match is None:
+    return ''
+  sender = int(match.group(1))
+  seq = int(match.group(2))
+  latency = int(match.group(3))
+  if recver == (sender % 5):
+    return ''  # Remove one hop data
+  return f'{sender},{seq},{latency}'
+
+
 def process_file(freq: int, node_cnt: int):
   for recver in range(1, 5):
     with open(f'./logs/udp/{node_cnt}-{freq}/{recver}.csv', 'r') as f_in:
@@ -45,10 +57,26 @@ def process_file(freq: int, node_cnt: int):
               print(new_line, file=f_out)
 
 
+def filter_self(freq: int, node_cnt: int):
+  for recver in range(1, 5):
+    with open(f'./logs/udp/{node_cnt}-{freq}/{recver}.csv', 'r') as f_in:
+      os.makedirs(f'./logs/udp_filtered/{node_cnt}-{freq}', exist_ok=True)
+      first_line = True
+      with open(f'./logs/udp_filtered/{node_cnt}-{freq}/{recver}.csv', 'w') as f_out:
+        for line in f_in:
+          if first_line:
+            first_line = False
+            print('id,seq,delay', file=f_out)
+          else:
+            new_line = filter_one_hop(line, recver)
+            if new_line:
+              print(new_line, file=f_out)
+
+
 def main():
   for node_cnt in NODE_CNTS:
     for freq in FREQS:
-      process_file(freq, node_cnt)
+      filter_self(freq, node_cnt)
 
 
 if __name__ == '__main__':
