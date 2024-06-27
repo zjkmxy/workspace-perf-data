@@ -1,0 +1,26 @@
+\begin{table}[h]
+  \scriptsize
+  \resizebox{0.46\textwidth}{!}{% <------ Don't forget this %
+    \begin{tabular}{  
+      > {\raggedleft\arraybackslash} p{1cm}
+      > {\raggedleft\arraybackslash} p{1cm}
+      > {\raggedleft\arraybackslash} p{1cm}
+      > {\raggedleft\arraybackslash} p{1cm}
+      > {\raggedleft\arraybackslash} p{1cm}
+    }
+    \toprule
+      \multicolumn{1}{> {\centering\arraybackslash} p{1cm}}{\textbf{Publication Interval}} &
+      \multicolumn{1}{> {\centering\arraybackslash} p{1cm}}{\qty{5}{insts}} &
+      \multicolumn{1}{> {\centering\arraybackslash} p{1cm}}{\qty{10}{insts}} &
+      \multicolumn{1}{> {\centering\arraybackslash} p{1cm}}{\qty{15}{insts}} &
+      \multicolumn{1}{> {\centering\arraybackslash} p{1cm}}{\qty{20}{insts}} \\
+    \midrule
+      \qty{500}{\milli\second} & \qty{192.55}{\milli\second} & \qty{188.97}{\milli\second} & \qty{190.17}{\milli\second} & \qty{192.62}{\milli\second} \\
+      \qty{1000}{\milli\second} & \qty{192.32}{\milli\second} & \qty{189.96}{\milli\second} & \qty{189.66}{\milli\second} & \qty{191.55}{\milli\second} \\
+    \bottomrule
+    \end{tabular}% <------ Don't forget this %
+  }
+  \smallskip
+  \caption{Means of latency (testbed)}
+  \label{tab:udp-means}
+\end{table}
